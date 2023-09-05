@@ -17,11 +17,27 @@
 // we add onclick atribute to button
 
 // first step password length
+function getPassLength(){
+  let length = prompt ("Enter password lenth? ")
+  while (!length || isNaN(length) || length<8 || length > 125) {
+    length = prompt("please enter a valid number between 8 and 125")
+  }
+  return parseInt(length);
+}
+const passwordLength= getPassLength();
 
 // second type of charachter 
 
 // third password should be generated
 
 //  last password hsould be shown in alert or windoes.
+
+
+ document.getElementById("generate").onclick= function passwordGenerate() {
+  
+ 
+}
+
+
 
 
