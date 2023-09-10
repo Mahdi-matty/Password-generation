@@ -1,102 +1,74 @@
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
-//  when button is cliked series of prompt should be shown for password criteria
-// we add onclick atribute to button
-
-// first step password length
-// function getPassLength(){
-//   let length = prompt ("Enter password lenth? ")
-//   while (!length || isNaN(length) || length<8 || length > 125) {
-//     length = prompt("please enter a valid number between 8 and 125")
-//   }
-//   return parseInt(length);
-// }
-// const passwordLength= getPassLength();
-
-// second type of charachter 
-// function charType() {
-//   const characterTypes = [
-//     { name: 'Numbers', characters: '0123456789', selected: false },
-//     { name: 'Uppercase Letters', characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', selected: false },
-//     { name: 'Lowercase Letters', characters: 'abcdefghijklmnopqrstuvwxyz', selected: false },
-//     { name: 'Special Characters', characters: '!@#$%^&*()_+{}[]|:;"<>,.?/~', selected: false }
-//   ];
-//   const selectedTypes = [];
-//   for (const type of characterTypes) {
-//     const userInput = prompt(`Include ${type.name} in the password? (yes/no)`);
-
-//     if (userInput && userInput.toLowerCase() === 'yes') {
-//       selectedTypes.push(type);
+//  1-writing a function that make the charachter length
+// function setLength () {
+//     let length = prompt ("what is the password length should be?");
+//     while (!length || isNaN(length) || length < 8 || length > 125) {
+//         length = prompt("please enter a valid number between 8 and 125")
 //     }
+// return parseInt(length);
+// }
+// const passLength = setLength();
 
-//   }
+//  2-making a function that prompt the available charachter
+// const numbers = {charachters :"0123456789" , selected : false}
+// const upperCase = { charachters :"ABCDEFGHIJKLMNOPQRSTUVWXYZ", selected : flase }
+// const lowerCase = {charachters : "abcdefghijklmnopqrstuvwxyz", selected : false}
+// const specialChar = { charachters : "!@#$%^&*()_+{}[]|:;<>,.?/~", selected : false}
+// function charachterInclude() {
+// numbers.selected = confirm("include numbers??");
+// upperCase.selected = confirm("include uppercanse??");
+// lowerCase.selected = confirm("include lowercase??");
+// specialChar.selected = confirm("inclide specialcharachters?");
+// const selectedItems = []
+// if (numbers.selected)   charachterSets.push(numbers.charachters)
+// if (upperCase.selected) charachterSets.push(upperCase.charachters)
+// if (lowerCase.selected) charachterSets.push(lowerCase.charachters)
+// if (specialChar.selected) charachterSets.push(specialChar.charachters)
 // }
 
-// third password should be generated
-// function passwordstuff() {
-//   let password= "";
-//   for (let i=8,; i<passwordLength; i++){
-//     const randomPass = Math.floor(Math.random()* selectedCharacterTypes.passwordLength);
-//     password +=selectedCharacterTypes.charAt(randomIndex);
-//   }
-//   document.getElementById("generate").value= password;
-// }
+// 3-generating password using above methods.
 
-//  last password hsould be shown in alert or windoes.
-
-
- document.getElementById("generate").onclick= function passwordGenerate() {
-  function getPassLength(){
-    let length = prompt ("Enter password length? ")
-  while (!length || isNaN(length) || length<8 || length > 125) {
-    length = prompt("please enter a valid number between 8 and 125")
-  }
+document.getElementById("generate").onclick= function passwordGenerate() {
+  function setLength () {
+      let length = prompt ("what is the password length should be?");
+      while (!length || isNaN(length) || length < 8 || length > 125) {
+          length = prompt("please enter a valid number between 8 and 125")
+      }
   return parseInt(length);
-}
-const passwordLength= getPassLength();
-function charType(){
-  const characterTypes = [
-    { name: 'Numbers', characters: '0123456789', selected: false },
-    { name: 'Uppercase Letters', characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', selected: false },
-    { name: 'Lowercase Letters', characters: 'abcdefghijklmnopqrstuvwxyz', selected: false },
-    { name: 'Special Characters', characters: '!@#$%^&*()_+{}[]|:;"<>,.?/~', selected: false }
-  ];
-  const selectedTypes = [];
-  for (const type of characterTypes) {
-    const userInput = prompt(`Include ${type.name} in the password? (yes/no)`);
+  }
+  const passLength = setLength();
+  const numbers = {charachters :"0123456789" , selected : false}
+  const upperCase = { charachters :"ABCDEFGHIJKLMNOPQRSTUVWXYZ", selected : false }
+  const lowerCase = {charachters : "abcdefghijklmnopqrstuvwxyz", selected : false}
+  const specialChar = { charachters : "!@#$%^&*()_+{}[]|:;<>,.?/~", selected : false}
+  function charachterInclude() {
+  numbers.selected = confirm("include numbers??");
+  upperCase.selected = confirm("include uppercanse??");
+  lowerCase.selected = confirm("include lowercase??");
+  specialChar.selected = confirm("inclide specialcharachters?");
+  }
+  charachterInclude();
+  const charachterSets = []
+  if (numbers.selected)   charachterSets.push(numbers.charachters);
+  if (upperCase.selected) charachterSets.push(upperCase.charachters);
+  if (lowerCase.selected) charachterSets.push(lowerCase.charachters);
+  if (specialChar.selected) charachterSets.push(specialChar.charachters);
 
-    if (userInput && userInput.toLowerCase() === 'yes') {
-      selectedTypes.push(type);
-    }
+  function generatePassword (){
+      let password= "";
+  const allInclusion = charachterSets.length
+
+  for (var i=0; i<passLength; i++) {
+      const everyIncluded =Math.floor(Math.random() * allInclusion);
+      const allType = charachterSets[ everyIncluded];
+      const whatBe = Math.floor(Math.random() *allType.length);
+      password += allType.charAt(whatBe);
+
   }
-  return selectedTypes;
-}
-const selectedCharacterTypes = charType();
-  function passwordstuff() {
-  let password= "";
-  for (let i=0; i<passwordLength; i++){
-    const randomTypeIndex = Math.floor(Math.random() * selectedCharacterTypes.length);
-    const randomType = selectedCharacterTypes[randomTypeIndex];
-    const randomCharIndex = Math.floor(Math.random() * randomType.characters.length);
-    password += randomType.characters.charAt(randomCharIndex);
+  return password;
   }
-  document.getElementById("password1").innerHTML= password;
-}
-const generatedPassword = passwordstuff();
-document.getElementById("password").value= password;
+  const generateedPassword = generatePassword();
+  document.getElementById("password1").value= generateedPassword;
+
   }
 
  
